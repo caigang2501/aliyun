@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>注册</title>
+    <style>
+        .errorlist {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>注册</h1>
+    <form method="post">
+        {% csrf_token %}
+
+        <div>
+            <label for="id_username">用户名:</label>
+            <input type="text" name="username" id="id_username" value="{{ form.username.value|default_if_none:'' }}">
+            {% if form.username.errors %}
+                <ul class="errorlist">
+                    {% for error in form.username.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+
+        <div>
+            <label for="id_email">邮箱:</label>
+            <input type="email" name="email" id="id_email" value="{{ form.email.value|default_if_none:'' }}">
+            {% if form.email.errors %}
+                <ul class="errorlist">
+                    {% for error in form.email.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+
+        <div>
+            <label for="id_password1">密码:</label>
+            <input type="password" name="password1" id="id_password1">
+            {% if form.password1.errors %}
+                <ul class="errorlist">
+                    {% for error in form.password1.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+
+        <div>
+            <label for="id_password2">确认密码:</label>
+            <input type="password" name="password2" id="id_password2">
+            {% if form.password2.errors %}
+                <ul class="errorlist">
+                    {% for error in form.password2.errors %}
+                        <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+        
+        <label>性别:</label>
+        <input type="radio" id="male" name="gender" value="male" checked>
+        <label for="male">男</label>
+        <input type="radio" id="female" name="gender" value="female">
+        <label for="female">女</label>
+        <br>
+    
+        <label for="country">国家:</label>
+        <select id="country" name="country">
+            <option value="cn">CN</option>
+            <option value="usa">USA</option>
+            <option value="uk">UK</option>
+        </select><br>
+    
+        <label for="country">安全问题:</label>
+        <select id="country" name="country">
+            <option value="cn">我出生的城市</option>
+            <option value="usa">我最爱的宠物的名字</option>
+            <option value="uk">我的小学校名</option>
+        </select><br>
+    
+        <label for="name">安全问题答案:</label>
+        <input type="text" id="name" name="name" required><br>
+    
+        <input type="checkbox" id="subscribe" name="subscribe" checked>
+        <label for="subscribe">订阅推送信息</label><br>
+        <button type="submit">注册</button>
+    </form>
+</body>
+</html>

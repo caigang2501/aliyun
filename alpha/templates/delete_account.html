@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>注销账户</title>
+</head>
+<body>
+    <h1>注销账户</h1>
+    <p>您确定要注销您的账户吗？此操作无法撤销。</p>
+    <form method="post" action="{% url 'alpha:delete_account' %}">
+        {% csrf_token %}
+        <button type="submit">确认注销</button>
+    </form>
+    <a href="{% url 'alpha:user_profile' %}">取消</a>
+</body>
+</html>

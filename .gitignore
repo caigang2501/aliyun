@@ -1,0 +1,10 @@
+*.xlsx
+*.png
+*.jpg
+
+*.pt
+*.pth
+*.h5
+
+aliyun/settings.py
+

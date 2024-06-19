@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+        base
+        {% endblock %}
+    </title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <div class="logo">alpha</div>
+        <nav>
+            <a href="{% url 'alpha:home' %}">首页</a>
+            <a href="{% url 'alpha:product' %}">产品</a>
+            <a href="{% url 'alpha:document' %}">文档</a>
+            <a href="{% url 'alpha:about' %}">关于</a>
+
+            {% if user.is_authenticated %}
+            <a href="{% url 'alpha:user_profile' %}">欢迎, {{ user.username }}!</a>
+            {% else %}
+                <a href="{% url 'alpha:register' %}">注册</a>
+                <a href="{% url 'alpha:login' %}">登陆</a>
+            {% endif %}
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        <h1>base</h1>
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>页脚内容</p>
+    </footer>
+</body>
+</html>
