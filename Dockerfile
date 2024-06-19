@@ -1,27 +1,25 @@
-# 使用一个基础的 Python 镜像
-FROM django_env
+FROM django
 
-# 设置工作目录
-WORKDIR /django_
-# 复制当前目录下的所有文件到工作目录
+WORKDIR /aliyun
+
+# COPY requirements.txt .
+# RUN pip install --no-cache-dir -r requirements.txt
+
 COPY . .
 
-#USER root
-#RUN apt-get update && apt-get install -y tesseract-ocr
+ENV DJANGO_SETTINGS_MODULE=aliyun.settings
+ENV PYTHONUNBUFFERED 1
 
-# 安装依赖
-#RUN pip install --ignore-installed -r requirements.txt
-# RUN pip install -r requirements.txt
-# RUN chmod 644 /data
+# 如果使用 MySQL，安装 MySQL 客户端库
+# RUN apt-get update && apt-get install -y default-libmysqlclient-dev
 
-# 暴露服务运行的端口
-EXPOSE 5000
+# 收集静态文件（如果有需要）
+RUN python manage.py collectstatic --noinput
 
-# 定义环境变量
-ENV FLASK_APP=appname.app.py
+RUN python manage.py migrate
 
-# 运行 Flask 服务
-CMD ["flask", "run", "--host=0.0.0.0"]
+CMD ["gunicorn", "--bind", "0.0.0.0:8000", "myproject.wsgi:application"]
+
 
 
 # docker build -t danger_dtc1 .
