@@ -2,32 +2,23 @@ FROM django
 
 WORKDIR /aliyun
 
-# COPY requirements.txt .
-# RUN pip install --no-cache-dir -r requirements.txt
-
 COPY . .
 
-ENV DJANGO_SETTINGS_MODULE=aliyun.settings
-ENV PYTHONUNBUFFERED 1
+# RUN pip install --upgrade pip
+# RUN pip install -r requirements.txt
 
-# 如果使用 MySQL，安装 MySQL 客户端库
-# RUN apt-get update && apt-get install -y default-libmysqlclient-dev
-
-# 收集静态文件（如果有需要）
+# 将 Django 静态文件收集到一个目录
 RUN python manage.py collectstatic --noinput
 
-RUN python manage.py migrate
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "myproject.wsgi:application"]
-
-
-
-# docker build -t danger_dtc1 .
+# NFD2=Whk$VK!EEf$R
+# docker build -t aliyun .
 # docker save -o danger_dtc.tar danger_dtc
-# scp danger_dtc.tar root@10.83.40.175:caigang
+# scp aliyun/settings.py root@47.121.137.79:aliyun/aliyun 
 # docker load -i danger_dtc.tar
-# docker run -d -p 8088:5000 danger_dtc1
-# docker run -it -p 5010:5000 danger_dtc bash
+# docker run -d -p 8088:5000 aliyun
+# docker run -it -p 5010:5000 aliyun bash
 
 # docker exec -it <e2545f0769ed> uname -m
 # gunicorn -w 4 -b 0.0.0.0:5000 your_flask_app:app

@@ -15,6 +15,20 @@
 # python manage.py runserver
 
 
+# mysql
+# docker run --name mysql_db -e MYSQL_ROOT_PASSWORD=qwer321 -p 3306:3306 -d mysql:latest
+# docker exec -it mysql_db mysql -uroot -p
+
+# CREATE DATABASE mydatabase;
+# CREATE USER 'dbuser'@'%' IDENTIFIED BY 'qwer321';
+# GRANT ALL PRIVILEGES ON mydatabase.* TO 'dbuser'@'%';
+# FLUSH PRIVILEGES;
+
+# SHOW DATABASES;
+# USE your_database_name;
+# SHOW TABLES;
+
+
 
 
 
