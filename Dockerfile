@@ -8,7 +8,7 @@ COPY . .
 # RUN pip install -r requirements.txt
 
 # 将 Django 静态文件收集到一个目录
-RUN python manage.py collectstatic --noinput
+# RUN python manage.py collectstatic --noinput
 
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 
@@ -20,6 +20,7 @@ CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 # docker run -d -p 8088:5000 aliyun
 # docker run -it -p 5010:5000 aliyun bash
 
+# docker exec -it django_app /bin/bash
 # docker exec -it <e2545f0769ed> uname -m
 # gunicorn -w 4 -b 0.0.0.0:5000 your_flask_app:app
 # uwsgi --http :5000 --wsgi-file your_flask_app.py

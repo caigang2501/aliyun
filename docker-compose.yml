@@ -2,13 +2,17 @@ version: '3.8'
 
 services:
   db:
-    image: mysql:latest
+    image: mysql
     container_name: mysql_db
     environment:
       MYSQL_DATABASE: mydatabase
       MYSQL_USER: dbuser
       MYSQL_PASSWORD: qwer321
       MYSQL_ROOT_PASSWORD: qwer321
+      MYSQL_INITDB_SKIP_TZINFO: 1
+      MYSQL_LOG_CONSOLE: 1
+      MYSQL_ROOT_HOST: '%'
+    command: --default-authentication-plugin=mysql_native_password
     volumes:
       - mysql_data:/var/lib/mysql
     ports:
@@ -27,3 +31,15 @@ services:
 
 volumes:
   mysql_data:
+
+
+# docker-compose build
+# docker-compose up -d
+# docker-compose ps
+# docker-compose exec django_app bash
+
+# docker-compose down # 停止并删除所有容器
+# docker-compose rm -f # 强行删除所有容器
+
+# docker image rm <image_id_or_name>
+# docker-compose down --rmi all # 删除所有docker-compose有关的镜像
