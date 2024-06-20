@@ -1,5 +1,5 @@
 # alpha beta gamma delta epsilon
-# scp aliyun/settings.py root@47.121.137.79:aliyun/aliyun  (NFD2=Whk$VK!EEf$R)
+# scp aliyun_settings.py root@47.121.137.79:aliyun/aliyun/settings.py  (NFD2=Whk$VK!EEf$R)
 # curl http://localhost:8000
 
 # superuser:

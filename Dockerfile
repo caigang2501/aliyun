@@ -5,7 +5,7 @@ WORKDIR /aliyun
 COPY . .
 
 # RUN pip install --upgrade pip
-# RUN pip install -r requirements.txt
+RUN pip install -r requirements.txt
 
 # 将 Django 静态文件收集到一个目录
 # RUN python manage.py collectstatic --noinput
