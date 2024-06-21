@@ -13,6 +13,8 @@ services:
       - mysql_data:/var/lib/mysql
     ports:
       - "3306:3306"
+    networks:
+      - mynetwork
   
   web:
     build: .
@@ -24,9 +26,15 @@ services:
       - "8000:8000"
     depends_on:
       - db
+    networks:
+      - mynetwork
 
 volumes:
   mysql_data:
+
+networks:
+  mynetwork:
+    driver: bridge
 
 
 # docker-compose build

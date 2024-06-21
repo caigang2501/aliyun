@@ -1,21 +1,19 @@
-FROM django
+FROM django2502
 
 WORKDIR /aliyun
 
 COPY . .
 
+RUN python manage.py migrate
 # RUN pip install --upgrade pip
-RUN pip install -r requirements.txt
-
-# 将 Django 静态文件收集到一个目录
-# RUN python manage.py collectstatic --noinput
+# RUN pip install -r requierments.txt
 
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
 
 # NFD2=Whk$VK!EEf$R
 # docker build -t aliyun .
 # docker save -o danger_dtc.tar danger_dtc
-# scp aliyun/settings.py root@47.121.137.79:aliyun/aliyun 
+# scp .py root@47.121.137.79:aliyun/aliyun 
 # docker load -i danger_dtc.tar
 # docker run -d -p 8088:5000 aliyun
 # docker run -it -p 5010:5000 aliyun bash
